@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纳塔斯坦军区</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://source.unsplash.com/random/1920x1080/?military,abstract') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+        
+        /* 背景遮罩 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        
+        /* 主容器 */
+        .hero {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 中文标题动画 */
+        .chinese-title {
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.5s ease-out forwards;
+            animation-delay: 0.3s;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        /* 横线动画 */
+        .title-line {
+            display: block;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+            margin: 0 auto 1.5rem;
+            opacity: 0;
+            animation: lineExpand 1.2s ease-out forwards;
+            animation-delay: 1s;
+            box-shadow: 0 0 10px #f59e0b;
+        }
+        
+        /* 英文副标题动画 */
+        .english-subtitle {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease-out forwards;
+            animation-delay: 0.8s;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 网格背景 */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            animation: distort 20s infinite alternate ease-in-out;
+            opacity: 0.3;
+        }
+        
+        /* 动画定义 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes lineExpand {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            100% {
+                width: 60%;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes distort {
+            0% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+                background-size: 40px 40px;
+            }
+            25% {
+                transform: perspective(1000px) rotateX(2deg) rotateY(1deg);
+                background-size: 42px 38px;
+            }
+            50% {
+                transform: perspective(1000px) rotateX(-1deg) rotateY(2deg);
+                background-size: 38px 42px;
+            }
+            75% {
+                transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);
+                background-size: 41px 39px;
+            }
+            100% {
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+                background-size: 40px 40px;
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .chinese-title {
+                font-size: 3rem;
+            }
+            .english-subtitle {
+                font-size: 1.2rem;
+            }
+            .title-line {
+                width: 80% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 扭曲网格背景 -->
+    <div class="grid-bg"></div>
+    
+    <div class="hero">
+        <h1 class="chinese-title">纳塔斯坦军区<span class="title-line"></span></h1>
+        <p class="english-subtitle">Natastan Military Region</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 标题悬停效果
+            const title = document.querySelector('.chinese-title');
+            const line = document.querySelector('.title-line');
+            
+            title.addEventListener('mouseover', function() {
+                this.style.textShadow = '0 0 20px rgba(245, 158, 11, 0.8)';
+                line.style.background = 'linear-gradient(90deg, transparent, #fff, transparent)';
+                line.style.boxShadow = '0 0 15px #fff';
+            });
+            
+            title.addEventListener('mouseout', function() {
+                this.style.textShadow = '0 0 10px rgba(0, 0, 0, 0.8)';
+                line.style.background = 'linear-gradient(90deg, transparent, #f59e0b, transparent)';
+                line.style.boxShadow = '0 0 10px #f59e0b';
+            });
+        });
+    </script>
+</body>
+</html>
